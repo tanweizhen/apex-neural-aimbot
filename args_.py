@@ -10,6 +10,12 @@ def arg_init(args):
     args.add_argument(
         "--model_dir", type=str, default=dirpath + "/model", help="model dir"
     )
+    args.add_argument(
+        "--smooth", type=float, default=0.2, help="delay after mouse movements"
+    )
+    args.add_argument(
+        "--show", type=bool, default=False, help="popout with boxes"
+    )
     args.add_argument("--model", type=str,
                       default="/best.engine", help="model path")
     args.add_argument("--iou", type=float,

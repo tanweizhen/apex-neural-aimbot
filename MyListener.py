@@ -9,8 +9,8 @@ import win32print
 import winsound
 
 Start_detection = False
-left_lock = False  # 左键锁, Left, 按鼠标左键时锁
-right_lock = False  # 右键锁, Right, 按鼠标右键(开镜)时锁
+left_lock = False  
+right_lock = True  # ADS activates
 old_status = False
 Listen = True
 width = 0
@@ -41,9 +41,13 @@ def listen_key(key):
     if key == keyboard.Key.end:
         Start_detection = not Start_detection
         print("Start detection: ", Start_detection)
-    if key == keyboard.Key.shift:
-        Start_detection = True
-        # print("Start detection: ", Start_detection)
+    if key == keyboard.Key.alt_l:
+        if Start_detection: 
+            Start_detection = False
+            winsound.Beep(200, 400)
+        else:
+            Start_detection = True
+            winsound.Beep(400, 200)
     if key == keyboard.Key.left:
         global left_lock
         left_lock = not left_lock
@@ -54,9 +58,9 @@ def listen_key(key):
         winsound.Beep(800 if right_lock else 400, 200)
 
 
-# TEMPORARY - detect if key shift is released
+# TEMPORARY - detect if key alt_l is released
 def keys_released(key):
-    if key == keyboard.Key.shift:
+    if key == keyboard.Key.alt_l:
         global Start_detection
         Start_detection = False
         # print("Start detection: ", Start_detection)
@@ -129,7 +133,7 @@ def Move_Mouse(args):
         des = mouse_vector / args.smooth
         for i in range(int(args.smooth)):
             win32api.mouse_event(win32con.MOUSEEVENTF_MOVE, int(des[0]), int(des[1]))
-            time.sleep(0.01 / args.smooth)
+            time.sleep(args.smooth)
         delay_time = 2.4 / float(args.game_fps)
         time.sleep(delay_time)
     else:
