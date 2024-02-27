@@ -122,6 +122,8 @@ def Move_Mouse(args):
                     return
                 else:
                     mouse_vector = np.array([0, 0])
+            if norm > args.movement_limit:
+                return
             move = PID(args, mouse_vector)
             win32api.mouse_event(win32con.MOUSEEVENTF_MOVE, int(move[0]), int(move[1]))
             return
