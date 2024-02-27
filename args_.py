@@ -11,13 +11,16 @@ def arg_init(args):
         "--model_dir", type=str, default=dirpath + "/model", help="model dir"
     )
     args.add_argument(
-        "--smooth", type=float, default=0.1, help="delay after mouse movements"
+        "--smooth", type=float, default=0.2, help="delay after mouse movements"
     )
     args.add_argument(
-        "--show", type=bool, default=True, help="popout with boxes"
+        "--mouse_speed_factor", type=float, default=0.4, help="multiplies mouse speed, below 1 makes movements realistic"
     )
     args.add_argument(
-        "--movement_limit", type=float, default=120, help="limit to stop snaps beyond a certain distance"
+        "--show", type=bool, default=False, help="popout with boxes"
+    )
+    args.add_argument(
+        "--movement_limit", type=float, default=100, help="limit to stop snaps beyond a certain distance"
     )
     args.add_argument("--model", type=str,
                       default="/best.engine", help="model path")
@@ -44,6 +47,8 @@ def arg_init(args):
                       default=1, help="target index")
     args.add_argument("--half", type=bool, default=True,
                       help="use half to predict")
+
+
 
     # PID args
     args.add_argument("--pid", type=bool, default=True, help="use pid")

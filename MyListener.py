@@ -125,12 +125,12 @@ def Move_Mouse(args):
             if norm > args.movement_limit:
                 return
             move = PID(args, mouse_vector)
-            win32api.mouse_event(win32con.MOUSEEVENTF_MOVE, int(move[0]), int(move[1]))
+            win32api.mouse_event(win32con.MOUSEEVENTF_MOVE, int(move[0] * args.mouse_speed_factor), int(move[1] * args.mouse_speed_factor))
             return
         # if destination not in region
         if norm <= 2 or (destination[0] == screen_center[0] and destination[1] == screen_center[1]): return
         if norm <= width * 2 / 3:
-            win32api.mouse_event(win32con.MOUSEEVENTF_MOVE, int(mouse_vector[0] / 2), int(mouse_vector[1] / 2))
+            win32api.mouse_event(win32con.MOUSEEVENTF_MOVE, int(mouse_vector[0] * args.mouse_speed_factor), int(mouse_vector[1] * args.mouse_speed_factor))
             return
         des = mouse_vector / args.smooth
         for i in range(int(args.smooth)):
