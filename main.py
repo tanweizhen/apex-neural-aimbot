@@ -24,7 +24,7 @@ def listeners():
 
 
 count = 0
-interval = 0.03
+interval = 0.02
 if __name__ == "__main__":
     # create a arg set
     Listen = True
