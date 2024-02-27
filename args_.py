@@ -33,9 +33,9 @@ def arg_init(args):
                            "2 represents 'Hitmark'..."
                            "Change default accordingly if your dataset changes")
     args.add_argument("--conf", type=float,
-                      default=0.65, help="predict conf")
+                      default=0.7, help="predict conf")
     args.add_argument("--crop_size", type=float,
-                      default=1/2,
+                      default=1/3,
                       help="the portion to detect from the screen(=crop_window_height/screen_height)"
                            "(It's always a rectangle)(from 0 to 1)")
     args.add_argument("--wait", type=float, default=0, help="wait time")
