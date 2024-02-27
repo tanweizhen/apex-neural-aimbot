@@ -11,10 +11,13 @@ def arg_init(args):
         "--model_dir", type=str, default=dirpath + "/model", help="model dir"
     )
     args.add_argument(
-        "--smooth", type=float, default=0.2, help="delay after mouse movements"
+        "--smooth", type=float, default=0.1, help="delay after mouse movements"
     )
     args.add_argument(
-        "--show", type=bool, default=False, help="popout with boxes"
+        "--show", type=bool, default=True, help="popout with boxes"
+    )
+    args.add_argument(
+        "--movement_limit", type=float, default=120, help="limit to stop snaps beyond a certain distance"
     )
     args.add_argument("--model", type=str,
                       default="/best.engine", help="model path")
@@ -30,9 +33,9 @@ def arg_init(args):
                            "2 represents 'Hitmark'..."
                            "Change default accordingly if your dataset changes")
     args.add_argument("--conf", type=float,
-                      default=0.7, help="predict conf")
+                      default=0.65, help="predict conf")
     args.add_argument("--crop_size", type=float,
-                      default=1 / 3,
+                      default=1/2,
                       help="the portion to detect from the screen(=crop_window_height/screen_height)"
                            "(It's always a rectangle)(from 0 to 1)")
     args.add_argument("--wait", type=float, default=0, help="wait time")
