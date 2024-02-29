@@ -8,5 +8,6 @@ def predict_init(args):
 def predict(args,img):
     global model
     res = model.track(img, verbose=args.verbos, half=args.half, iou=args.iou, conf=args.conf, show=False, persist=True, tracker="bytetrack.yaml")
+    #res = model(img, verbose=args.verbos, half=args.half, iou=args.iou, conf=args.conf, show=False)
     #print(res)
     return res[0]

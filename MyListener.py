@@ -60,7 +60,7 @@ def listen_key(key):
 
 # TEMPORARY - detect if key alt_l is released
 def keys_released(key):
-    if key == keyboard.Key.alt_l:
+    if key == keyboard.Key.shift:
         global Start_detection
         Start_detection = False
         # print("Start detection: ", Start_detection)
