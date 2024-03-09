@@ -6,7 +6,6 @@ from MyListener import listen_key, keys_released, listen_mouse, get_S_L, Mouse_r
 from args_ import *
 from threading import Thread
 from multiprocessing import Process, Pipe, Value
-from show_target import Show_target
 import numpy as np
 
 global Start_detection, Listen
@@ -71,7 +70,7 @@ if __name__ == "__main__":
         # print("total time: ", time.time() - time_shot)
         count += 1
 
-        if (count % 100 == 0):
+        if (count % 1000 == 0):
             time_per_100frame = time.time() - time_start
             time_start = time.time()
             print("Screenshot fps: ", count / time_captured_total)
