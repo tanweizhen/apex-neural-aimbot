@@ -9,7 +9,7 @@ import win32print
 import winsound
 
 Start_detection = False
-left_lock = False  
+left_lock = True  
 right_lock = True  # ADS activates
 old_status = False
 Listen = True
