@@ -11,19 +11,22 @@ def arg_init(args):
         "--model_dir", type=str, default=dirpath + "/model", help="model dir"
     )
     args.add_argument(
-        "--smooth", type=float, default=0.1, help="delay after mouse movements"
+        "--smooth", type=float, default=0.12, help="delay after mouse movements"
     )
     args.add_argument(
-        "--mouse_speed_factor", type=float, default=0.4, help="multiplies mouse speed, below 1 makes movements realistic"
+        "--mouse_speed_factor", type=float, default=0.5, help="multiplies mouse speed, below 1 makes movements realistic"
     )
     args.add_argument(
         "--show", type=bool, default=False, help="popout with boxes"
     )
     args.add_argument(
-        "--movement_limit", type=float, default=120, help="limit to stop snaps beyond a certain distance"
+        "--min_box_height", type=int, default=50, help="filter out bounding boxes below this height"
+    )
+    args.add_argument(
+        "--movement_limit", type=float, default=150, help="limit to stop snaps beyond a certain distance"
     )
     args.add_argument("--model", type=str,
-                      default="/best.engine", help="model path")
+                      default="/batch_2.engine", help="model path")
     args.add_argument("--iou", type=float,
                       default=0.5, help="predict iou")
     args.add_argument("--classes",
@@ -38,7 +41,7 @@ def arg_init(args):
     args.add_argument("--conf", type=float,
                       default=0.5, help="predict conf")
     args.add_argument("--crop_size", type=float,
-                      default=1/3,
+                      default=4/9,
                       help="the portion to detect from the screen(=crop_window_height/screen_height)"
                            "(It's always a rectangle)(from 0 to 1)")
     args.add_argument("--wait", type=float, default=0, help="wait time")

@@ -60,6 +60,7 @@ if __name__ == "__main__":
         predict_res = predict(args, img)
         boxes = predict_res.boxes
         boxes = boxes[boxes[:].cls == args.target_index].cpu().xyxy.numpy()
+        # boxes sample: [[     229.85      228.37      353.29      412.85]]
         time_predict = time.time()
         # print("predict time: ", time.time() - time_captured)
         if Start_detection:

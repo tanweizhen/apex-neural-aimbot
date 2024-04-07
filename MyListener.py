@@ -41,7 +41,7 @@ def listen_key(key):
     if key == keyboard.Key.end:
         Start_detection = not Start_detection
         print("Start detection: ", Start_detection)
-    if key == keyboard.Key.alt_l:
+    if key == keyboard.Key.alt_r:
         if Start_detection: 
             Start_detection = False
             winsound.Beep(200, 400)
@@ -122,7 +122,7 @@ def Move_Mouse(args):
                     return
                 else:
                     mouse_vector = np.array([0, 0])
-            if norm > args.movement_limit:
+            if norm > args.movement_limit or height < args.min_box_height:
                 return
             move = PID(args, mouse_vector)
             win32api.mouse_event(win32con.MOUSEEVENTF_MOVE, int(move[0] * args.mouse_speed_factor), int(move[1] * args.mouse_speed_factor))
@@ -144,7 +144,7 @@ def Move_Mouse(args):
 
 # redirect the mouse closer to the nearest box center
 def Mouse_redirection(boxes, args, tpf):
-    global destination, width, interval, screen_size, screen_center, last
+    global destination, width, height, interval, screen_size, screen_center, last
     if boxes.shape[0] == 0:
         last = destination
         destination = np.array([-1, -1])
@@ -170,6 +170,7 @@ def Mouse_redirection(boxes, args, tpf):
     dis = np.linalg.norm(boxes_center - pos, axis=-1)
     min_index = np.argmin(dis)
     width = boxes[min_index, 2] - boxes[min_index, 0]
+    height = boxes[min_index, 3] - boxes[min_index, 1]
     last = destination
     destination = boxes_center[np.argmin(dis)].astype(int)
     # print(destination)
